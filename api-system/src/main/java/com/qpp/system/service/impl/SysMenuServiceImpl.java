@@ -23,14 +23,17 @@ import com.qpp.system.mapper.SysMenuMapper;
 import com.qpp.system.mapper.SysRoleMenuMapper;
 import com.qpp.system.service.ISysMenuService;
 
+
 /**
- * 菜单 业务层处理
- * 
- * @author ruoyi
+ * @ClassName UserRealm
+ * @Description TODO  菜单 业务层处理
+ * @Author qipengpai
+ * @Date 2018/10/25 13:50
+ * @Version 1.0.1
  */
 @Service
-public class SysMenuServiceImpl implements ISysMenuService
-{
+public class SysMenuServiceImpl implements ISysMenuService {
+
     public static final String PREMISSION_STRING = "perms[\"{0}\"]";
 
     @Autowired
@@ -42,16 +45,14 @@ public class SysMenuServiceImpl implements ISysMenuService
     /**
      * 根据用户查询菜单
      * 
-     * @param userId 用户信息
+     * @param user 用户信息
      * @return 菜单列表
      */
     @Override
-    public List<SysMenu> selectMenusByUser(SysUser user)
-    {
+    public List<SysMenu> selectMenusByUser(SysUser user) {
         List<SysMenu> menus = new LinkedList<SysMenu>();
         // 管理员显示所有菜单信息
-        if (user.isAdmin())
-        {
+        if (user.isAdmin()) {
             menus = menuMapper.selectMenuNormalAll();
         }
         else
@@ -84,20 +85,19 @@ public class SysMenuServiceImpl implements ISysMenuService
     }
 
     /**
-     * 根据用户ID查询权限
-     * 
-     * @param userId 用户ID
-     * @return 权限列表
-     */
+     * @Author qipengpai
+     * @Description //TODO 根据用户ID查询菜单权限
+     * @Date 2018/10/25 14:09
+     * @Param [userId] 用户ID
+     * @return java.util.Set<java.lang.String>
+     * @throws
+     **/
     @Override
-    public Set<String> selectPermsByUserId(Long userId)
-    {
+    public Set<String> selectPermsByUserId(Long userId) {
         List<String> perms = menuMapper.selectPermsByUserId(userId);
         Set<String> permsSet = new HashSet<>();
-        for (String perm : perms)
-        {
-            if (StringUtils.isNotEmpty(perm))
-            {
+        for (String perm : perms) {
+            if (StringUtils.isNotEmpty(perm)) {
                 permsSet.addAll(Arrays.asList(perm.trim().split(",")));
             }
         }
@@ -134,8 +134,7 @@ public class SysMenuServiceImpl implements ISysMenuService
      * @return 菜单列表
      */
     @Override
-    public List<Map<String, Object>> menuTreeData()
-    {
+    public List<Map<String, Object>> menuTreeData() {
         List<Map<String, Object>> trees = new ArrayList<Map<String, Object>>();
         List<SysMenu> menuList = menuMapper.selectMenuAll();
         trees = getTrees(menuList, false, null, false);
@@ -148,14 +147,11 @@ public class SysMenuServiceImpl implements ISysMenuService
      * @return 权限列表
      */
     @Override
-    public LinkedHashMap<String, String> selectPermsAll()
-    {
+    public LinkedHashMap<String, String> selectPermsAll() {
         LinkedHashMap<String, String> section = new LinkedHashMap<>();
         List<SysMenu> permissions = menuMapper.selectMenuAll();
-        if (StringUtils.isNotEmpty(permissions))
-        {
-            for (SysMenu menu : permissions)
-            {
+        if (StringUtils.isNotEmpty(permissions)) {
+            for (SysMenu menu : permissions) {
                 section.put(menu.getUrl(), MessageFormat.format(PREMISSION_STRING, menu.getPerms()));
             }
         }

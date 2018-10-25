@@ -23,8 +23,7 @@ import com.qpp.system.service.ISysUserService;
  * @author ruoyi
  */
 @Component
-public class LoginService
-{
+public class LoginService {
     @Autowired
     private PasswordService passwordService;
 
@@ -34,8 +33,7 @@ public class LoginService
     /**
      * 登录
      */
-    public SysUser login(String username, String password)
-    {
+    public SysUser login(String username, String password) {
         // 验证码校验
         if (!StringUtils.isEmpty(ServletUtils.getRequest().getAttribute(ShiroConstants.CURRENT_CAPTCHA)))
         {

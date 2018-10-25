@@ -19,29 +19,30 @@ import com.qpp.system.service.impl.SysLogininforServiceImpl;
 import com.qpp.system.service.impl.SysUserOnlineServiceImpl;
 import eu.bitwalker.useragentutils.UserAgent;
 
+
 /**
- * 异步工厂（产生任务用）
- * 
- * @author liuhulu
- *
+ * @ClassName OnlineSessionFilter
+ * @Description TODO 异步工厂（产生任务用）
+ * @Author qipengpai
+ * @Date 2018/10/25 11:41
+ * @Version 1.0.1
  */
-public class AsyncFactory
-{
+public class AsyncFactory {
     private static final Logger sys_user_logger = LoggerFactory.getLogger("sys-user");
 
     /**
-     * 同步session到数据库
-     * 
-     * @param session 在线用户会话
-     * @return 任务task
-     */
-    public static TimerTask syncSessionToDb(final OnlineSession session)
-    {
-        return new TimerTask()
-        {
+     * @Author qipengpai
+     * @Description //TODO 同步session到数据库
+     * @Date 2018/10/25 12:53
+     * @Param [session] 在线用户会话
+     * @return java.util.TimerTask 任务task
+     * @throws
+     **/
+    public static TimerTask syncSessionToDb(final OnlineSession session) {
+        //是jdk自带的定时任务实现
+        return new TimerTask() {
             @Override
-            public void run()
-            {
+            public void run() {
                 SysUserOnline online = new SysUserOnline();
                 online.setSessionId(String.valueOf(session.getId()));
                 online.setDeptName(session.getDeptName());
@@ -55,24 +56,23 @@ public class AsyncFactory
                 online.setOs(session.getOs());
                 online.setStatus(session.getStatus());
                 SpringUtils.getBean(SysUserOnlineServiceImpl.class).saveOnline(online);
-
             }
         };
     }
 
+
     /**
-     * 操作日志记录
-     * 
-     * @param operLog 操作日志信息
-     * @return 任务task
-     */
-    public static TimerTask recordOper(final SysOperLog operLog)
-    {
-        return new TimerTask()
-        {
+     * @Author qipengpai
+     * @Description //TODO 操作日志记录
+     * @Date 2018/10/25 13:31
+     * @Param [operLog] 操作日志信息
+     * @return java.util.TimerTask 任务task
+     * @throws
+     **/
+    public static TimerTask recordOper(final SysOperLog operLog) {
+        return new TimerTask() {
             @Override
-            public void run()
-            {
+            public void run() {
                 // 远程查询操作地点
                 operLog.setOperLocation(AddressUtils.getRealAddressByIP(operLog.getOperIp()));
                 SpringUtils.getBean(ISysOperLogService.class).insertOperlog(operLog);
@@ -81,16 +81,14 @@ public class AsyncFactory
     }
 
     /**
-     * 记录登陆信息
-     * 
-     * @param username 用户名
-     * @param status 状态
-     * @param message 消息
-     * @param args 列表
-     * @return 任务task
-     */
-    public static TimerTask recordLogininfor(final String username, final String status, final String message, final Object... args)
-    {
+     * @Author qipengpai
+     * @Description //TODO 记录登陆信息
+     * @Date 2018/10/25 13:25
+     * @Param [username, status, message, args]  用户名 ，状态， 消息，列表
+     * @return java.util.TimerTask
+     * @throws
+     **/
+    public static TimerTask recordLogininfor(final String username, final String status, final String message, final Object... args) {
         final UserAgent userAgent = UserAgent.parseUserAgentString(ServletUtils.getRequest().getHeader("User-Agent"));
         final String ip = ShiroUtils.getIp();
         return new TimerTask()
@@ -119,12 +117,10 @@ public class AsyncFactory
                 logininfor.setOs(os);
                 logininfor.setMsg(message);
                 // 日志状态
-                if (Constants.LOGIN_SUCCESS.equals(status) || Constants.LOGOUT.equals(status))
-                {
+                if (Constants.LOGIN_SUCCESS.equals(status) || Constants.LOGOUT.equals(status)) {
                     logininfor.setStatus(Constants.SUCCESS);
                 }
-                else if (Constants.LOGIN_FAIL.equals(status))
-                {
+                else if (Constants.LOGIN_FAIL.equals(status)) {
                     logininfor.setStatus(Constants.FAIL);
                 }
                 // 插入数据

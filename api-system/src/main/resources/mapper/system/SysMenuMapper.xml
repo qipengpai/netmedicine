@@ -47,7 +47,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectMenuAll" resultMap="SysMenuResult">
 		<include refid="selectMenuVo"/>
 	</select>
-	
+
+	<!--根据用户ID查询菜单权限-->
 	<select id="selectPermsByUserId" parameterType="Long" resultType="String">
 		select distinct m.perms
 		from sys_menu m

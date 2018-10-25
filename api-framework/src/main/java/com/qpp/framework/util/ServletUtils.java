@@ -11,13 +11,15 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+
 /**
- * 客户端工具类
- * 
- * @author ruoyi
+ * @ClassName ServletUtils
+ * @Description TODO 客户端工具类
+ * @Author qipengpai
+ * @Date 2018/10/25 11:41
+ * @Version 1.0.1
  */
-public class ServletUtils
-{
+public class ServletUtils {
     /**
      * 获取String参数
      */

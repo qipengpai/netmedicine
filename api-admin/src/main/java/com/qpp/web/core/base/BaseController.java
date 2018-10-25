@@ -18,18 +18,25 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * web层通用数据处理
- * 
- * @author ruoyi
+ * @ClassName BaseController
+ * @Description TODO web层通用数据处理
+ * @Author qipengpai
+ * @Date 2018/10/25 11:41
+ * @Version 1.0.1
  */
-public class BaseController
-{
+public class BaseController {
+
+
     /**
      * 将前台传递过来的日期格式的字符串，自动转化为Date类型
      */
+    /**
+     * 由@InitBinder表示的方法，可以对WebDataBinder对象进行初始化。WebDataBinder是DataBinder的子类，用于完成由表单到JavaBean属性的绑定。
+     * @InitBinder方法不能有返回值，它必须声明为void。
+     * @InitBinder方法的参数通常是WebDataBinder，@InitBinder可以对WebDataBinder进行初始化。
+     * */
     @InitBinder
-    public void initBinder(WebDataBinder binder)
-    {
+    public void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         dateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
@@ -38,8 +45,7 @@ public class BaseController
     /**
      * 设置请求分页数据
      */
-    protected void startPage()
-    {
+    protected void startPage() {
         PageDomain pageDomain = TableSupport.buildPageRequest();
         Integer pageNum = pageDomain.getPageNum();
         Integer pageSize = pageDomain.getPageSize();
@@ -54,8 +60,7 @@ public class BaseController
      * 响应请求分页数据
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    protected TableDataInfo getDataTable(List<?> list)
-    {
+    protected TableDataInfo getDataTable(List<?> list) {
         TableDataInfo rspData = new TableDataInfo();
         rspData.setCode(0);
         rspData.setRows(list);

@@ -21,10 +21,13 @@ import com.qpp.system.mapper.SysRoleMenuMapper;
 import com.qpp.system.mapper.SysUserRoleMapper;
 import com.qpp.system.service.ISysRoleService;
 
+
 /**
- * 角色 业务层处理
- * 
- * @author ruoyi
+ * @ClassName ISysRoleService
+ * @Description TODO  角色 业务层处理
+ * @Author qipengpai
+ * @Date 2018/10/25 13:50
+ * @Version 1.0.1
  */
 @Service
 public class SysRoleServiceImpl implements ISysRoleService {
@@ -48,26 +51,25 @@ public class SysRoleServiceImpl implements ISysRoleService {
      */
     @Override
     @DataScope(tableAlias = "u")
-    public List<SysRole> selectRoleList(SysRole role)
-    {
+    public List<SysRole> selectRoleList(SysRole role) {
         return roleMapper.selectRoleList(role);
     }
 
+
     /**
-     * 根据用户ID查询权限
-     * 
-     * @param userId 用户ID
-     * @return 权限列表
-     */
+     * @Author qipengpai
+     * @Description //TODO 根据用户ID查询用户角色权限
+     * @Date 2018/10/25 14:08
+     * @Param [userId]
+     * @return java.util.Set<java.lang.String>
+     * @throws
+     **/
     @Override
-    public Set<String> selectRoleKeys(Long userId)
-    {
+    public Set<String> selectRoleKeys(Long userId) {
         List<SysRole> perms = roleMapper.selectRolesByUserId(userId);
         Set<String> permsSet = new HashSet<>();
-        for (SysRole perm : perms)
-        {
-            if (StringUtils.isNotNull(perms))
-            {
+        for (SysRole perm : perms) {
+            if (StringUtils.isNotNull(perm)) {
                 permsSet.addAll(Arrays.asList(perm.getRoleKey().trim().split(",")));
             }
         }

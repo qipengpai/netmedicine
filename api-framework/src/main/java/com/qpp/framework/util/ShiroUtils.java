@@ -13,41 +13,37 @@ import org.apache.shiro.subject.Subject;
 import com.qpp.system.domain.SysUser;
 
 /**
- * shiro 工具类
- * 
- * @author ruoyi
+ * @ClassName ShiroUtils
+ * @Description TODO  shiro 工具类
+ * @Author qipengpai
+ * @Date 2018/10/25 13:50
+ * @Version 1.0.1
  */
-public class ShiroUtils
-{
-    public static Subject getSubjct()
-    {
+public class ShiroUtils {
+
+    public static Subject getSubjct() {
         return SecurityUtils.getSubject();
     }
 
-    public static Session getSession()
-    {
+    public static Session getSession() {
         return SecurityUtils.getSubject().getSession();
     }
 
-    public static void logout()
-    {
+    public static void logout() {
         getSubjct().logout();
     }
 
-    public static SysUser getUser()
-    {
+    public static SysUser getUser() {
         SysUser user = null;
         Object obj = getSubjct().getPrincipal();
-        if (StringUtils.isNotNull(obj))
-        {
+        if (StringUtils.isNotNull(obj)) {
             user = new SysUser();
             BeanUtils.copyBeanProp(user, obj);
         }
         return user;
     }
 
-    public static void setUser(SysUser user)
-    {
+    public static void setUser(SysUser user) {
         Subject subject = getSubjct();
         PrincipalCollection principalCollection = subject.getPrincipals();
         String realmName = principalCollection.getRealmNames().iterator().next();
@@ -56,10 +52,10 @@ public class ShiroUtils
         subject.runAs(newPrincipalCollection);
     }
 
-    public static void clearCachedAuthorizationInfo()
-    {
+    public static void clearCachedAuthorizationInfo() {
         RealmSecurityManager rsm = (RealmSecurityManager) SecurityUtils.getSecurityManager();
         UserRealm realm = (UserRealm) rsm.getRealms().iterator().next();
+        //清理缓存权限
         realm.clearCachedAuthorizationInfo();
     }
 

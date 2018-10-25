@@ -2,6 +2,7 @@ package com.qpp.web.controller.common;
 
 import com.qpp.apicommons.config.Global;
 import com.qpp.apicommons.utils.file.FileUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -13,18 +14,18 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 /**
- * 通用请求处理
- * 
- * @author ruoyi
+ * @ClassName CommonController
+ * @Description TODO 通用请求处理
+ * @Author qipengpai
+ * @Date 2018/10/25 11:41
+ * @Version 1.0.1
  */
+@Slf4j
 @Controller
-public class CommonController
-{
-    private static final Logger log = LoggerFactory.getLogger(CommonController.class);
+public class CommonController {
 
     @RequestMapping("common/download")
-    public void fileDownload(String fileName, Boolean delete, HttpServletResponse response, HttpServletRequest request)
-    {
+    public void fileDownload(String fileName, Boolean delete, HttpServletResponse response, HttpServletRequest request) {
         String realFileName = System.currentTimeMillis() + fileName.substring(fileName.indexOf("_") + 1);
         try
         {
@@ -45,8 +46,7 @@ public class CommonController
         }
     }
 
-    public String setFileDownloadHeader(HttpServletRequest request, String fileName) throws UnsupportedEncodingException
-    {
+    public String setFileDownloadHeader(HttpServletRequest request, String fileName) throws UnsupportedEncodingException {
         final String agent = request.getHeader("USER-AGENT");
         String filename = fileName;
         if (agent.contains("MSIE"))

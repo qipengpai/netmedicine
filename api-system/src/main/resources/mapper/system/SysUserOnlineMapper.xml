@@ -22,21 +22,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        select sessionId, login_name, dept_name, ipaddr, login_location, browser, os, status, status, start_timestamp, last_access_time, expire_time 
 	   from sys_user_online
     </sql>
-    
+
+	<!--通过会话序号查询信息-->
 	<select id="selectOnlineById" parameterType="String" resultMap="SysUserOnlineResult">
 		<include refid="selectOnlineVo"/>
 		where sessionid = #{sessionid}
 	</select>
 
+	<!--保存会话信息-->
 	<insert id="saveOnline" parameterType="SysUserOnline">
 		replace into sys_user_online(sessionId, login_name, dept_name, ipaddr, login_location, browser, os, status, start_timestamp, last_access_time, expire_time)
         values (#{sessionId}, #{loginName}, #{deptName}, #{ipaddr}, #{loginLocation}, #{browser}, #{os}, #{status}, #{startTimestamp}, #{lastAccessTime}, #{expireTime})
 	</insert>
-	
+
+	<!--通过会话序号删除信息-->
  	<delete id="deleteOnlineById" parameterType="String">
  		delete from sys_user_online where sessionId = #{sessionId}
  	</delete>
- 	
+
+	<!--查询会话集合-->
  	<select id="selectUserOnlineList" parameterType="SysUserOnline" resultMap="SysUserOnlineResult">
 		<include refid="selectOnlineVo"/>
 		<where>
@@ -48,7 +52,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
 	</select>
-	
+
+	<!--查询过期会话集合-->
 	<select id="selectOnlineByExpired" parameterType="String" resultMap="SysUserOnlineResult">
 		<include refid="selectOnlineVo"/> o 
 		WHERE o.last_access_time <![CDATA[ <= ]]> #{lastAccessTime} ORDER BY o.last_access_time ASC

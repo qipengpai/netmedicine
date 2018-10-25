@@ -39,8 +39,7 @@ public class PasswordService
         loginRecordCache = cacheManager.getCache("loginRecordCache");
     }
 
-    public void validate(SysUser user, String password)
-    {
+    public void validate(SysUser user, String password) {
         String loginName = user.getLoginName();
 
         AtomicInteger retryCount = loginRecordCache.get(loginName);
@@ -68,18 +67,23 @@ public class PasswordService
         }
     }
 
-    public boolean matches(SysUser user, String newPassword)
-    {
+    public boolean matches(SysUser user, String newPassword) {
         return user.getPassword().equals(encryptPassword(user.getLoginName(), newPassword, user.getSalt()));
     }
 
-    public void clearLoginRecordCache(String username)
-    {
+    public void clearLoginRecordCache(String username) {
         loginRecordCache.remove(username);
     }
 
-    public String encryptPassword(String username, String password, String salt)
-    {
+    /**
+     * @Author qipengpai
+     * @Description //TODO 加密密码
+     * @Date 2018/10/25 13:34
+     * @Param [username, password, salt]
+     * @return java.lang.String
+     * @throws
+     **/
+    public String encryptPassword(String username, String password, String salt) {
         return new Md5Hash(username + password + salt).toHex().toString();
     }
 

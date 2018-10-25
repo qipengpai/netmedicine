@@ -9,10 +9,13 @@ import com.qpp.framework.shiro.session.OnlineSessionDAO;
 import org.apache.shiro.web.filter.PathMatchingFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 /**
- * 同步Session数据到Db
- * 
- * @author ruoyi
+ * @ClassName SyncOnlineSessionFilter
+ * @Description TODO 同步Session数据到Db
+ * @Author qipengpai
+ * @Date 2018/10/25 11:41
+ * @Version 1.0.1
  */
 public class SyncOnlineSessionFilter extends PathMatchingFilter
 {
@@ -28,13 +31,11 @@ public class SyncOnlineSessionFilter extends PathMatchingFilter
      * @throws Exception
      */
     @Override
-    protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception
-    {
+    protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
         OnlineSession session = (OnlineSession) request.getAttribute(ShiroConstants.ONLINE_SESSION);
         // 如果session stop了 也不同步
         // session停止时间，如果stopTimestamp不为null，则代表已停止
-        if (session != null && session.getUserId() != null && session.getStopTimestamp() == null)
-        {
+        if (session != null && session.getUserId() != null && session.getStopTimestamp() == null) {
             onlineSessionDAO.syncToDb(session);
         }
         return true;

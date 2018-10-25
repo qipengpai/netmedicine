@@ -11,12 +11,15 @@ import org.springframework.stereotype.Component;
 import com.qpp.system.domain.SysUserOnline;
 
 /**
- * 在线用户 服务层处理
- * 
- * @author ruoyi
+ * @ClassName ShiroConfig
+ * @Description TODO 在线用户 服务层处理
+ * @Author qipengpai
+ * @Date 2018/10/25 11:55
+ * @Version 1.0.1
  */
 @Component
 public class SysUserOnlineServiceImpl {
+
     @Autowired
     private SysUserOnlineMapper userOnlineDao;
 
@@ -37,11 +40,9 @@ public class SysUserOnlineServiceImpl {
      * @param sessionId 会话ID
      * @return 在线用户信息
      */
-    public void deleteOnlineById(String sessionId)
-    {
+    public void deleteOnlineById(String sessionId) {
         SysUserOnline userOnline = selectOnlineById(sessionId);
-        if (StringUtils.isNotNull(userOnline))
-        {
+        if (StringUtils.isNotNull(userOnline)) {
             userOnlineDao.deleteOnlineById(sessionId);
         }
     }
@@ -52,10 +53,8 @@ public class SysUserOnlineServiceImpl {
      * @param sessions 会话ID集合
      * @return 在线用户信息
      */
-    public void batchDeleteOnline(List<String> sessions)
-    {
-        for (String sessionId : sessions)
-        {
+    public void batchDeleteOnline(List<String> sessions) {
+        for (String sessionId : sessions) {
             SysUserOnline userOnline = selectOnlineById(sessionId);
             if (StringUtils.isNotNull(userOnline))
             {
@@ -69,8 +68,7 @@ public class SysUserOnlineServiceImpl {
      * 
      * @param online 会话信息
      */
-    public void saveOnline(SysUserOnline online)
-    {
+    public void saveOnline(SysUserOnline online) {
         userOnlineDao.saveOnline(online);
     }
 

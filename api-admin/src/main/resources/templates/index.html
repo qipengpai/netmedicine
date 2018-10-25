@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
-    <title>若依管理系统首页</title>
-    <meta name="keywords" content="若依管理系统首页">
-    <meta name="description" content="若依管理系统首页">
+    <title>管理系统首页</title>
+    <meta name="keywords" content="管理系统首页">
+    <meta name="description" content="管理系统首页">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
@@ -46,7 +46,7 @@
                  <li class="active">
                     <a href="index.html"><i class="fa fa-home"></i> <span class="nav-label">主页</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li class="active"><a class="menuItem" th:href="@{/system/main}">了解若依</a></li>
+                        <li class="active"><a class="menuItem" th:href="@{/system/main}">了解一下</a></li>
                     </ul>
                 </li>
                 <li th:each="menu : ${menus}">
@@ -88,7 +88,7 @@
                 </div>
                 <ul class="nav navbar-top-links navbar-right welcome-message">
 	                <li>
-	                    <span class="m-r-sm text-muted">欢迎来到若依管理后台.</span>
+	                    <span class="m-r-sm text-muted">欢迎来到管理后台.</span>
 	                </li>
 	                <li><a id="fullScreen"><i class="fa fa-arrows-alt"></i>全屏</a></li>
                     <li><a th:href="@{logout}"><i class="fa fa-sign-out"></i>退出</a></li>
