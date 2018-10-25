@@ -37,6 +37,14 @@ public class SysLoginController extends BaseController {
         return "login";
     }
 
+    /**
+     * @Author qipengpai
+     * @Description //TODO 用户登陆
+     * @Date 2018/10/25 15:39
+     * @Param [username, password, rememberMe] 
+     * @return com.qpp.apicommons.base.AjaxResult
+     * @throws 
+     **/
     @PostMapping("/login")
     @ResponseBody
     public AjaxResult ajaxLogin(String username, String password, Boolean rememberMe) {
@@ -45,8 +53,7 @@ public class SysLoginController extends BaseController {
         try {
             subject.login(token);
             return success();
-        }
-        catch (AuthenticationException e) {
+        } catch (AuthenticationException e) {
             String msg = "用户或密码错误";
             if (StringUtils.isNotEmpty(e.getMessage())) {
                 msg = e.getMessage();

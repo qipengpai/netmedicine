@@ -22,13 +22,19 @@ import com.qpp.system.mapper.SysUserRoleMapper;
 import com.qpp.system.service.ISysUserService;
 
 /**
- * 用户 业务层处理
+ *
  * 
  * @author ruoyi
  */
+/**
+ * @ClassName SysUserServiceImpl
+ * @Description TODO 用户 业务层处理
+ * @Author qipengpai
+ * @Date 2018/10/25 13:45
+ * @Version 1.0.1
+ */
 @Service
-public class SysUserServiceImpl implements ISysUserService
-{
+public class SysUserServiceImpl implements ISysUserService {
     @Autowired
     private SysUserMapper userMapper;
 
@@ -71,26 +77,28 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 通过手机号码查询用户
-     * 
-     * @param userName 用户名
-     * @return 用户对象信息
-     */
+     * @Author qipengpai
+     * @Description //TODO 通过手机号码查询用户
+     * @Date 2018/10/25 14:40
+     * @Param [phoneNumber] 手机号
+     * @return com.qpp.system.domain.SysUser 用户对象信息
+     * @throws
+     **/
     @Override
-    public SysUser selectUserByPhoneNumber(String phoneNumber)
-    {
+    public SysUser selectUserByPhoneNumber(String phoneNumber) {
         return userMapper.selectUserByPhoneNumber(phoneNumber);
     }
 
     /**
-     * 通过邮箱查询用户
-     * 
-     * @param email 邮箱
-     * @return 用户对象信息
-     */
+     * @Author qipengpai
+     * @Description //TODO 通过邮箱查询用户
+     * @Date 2018/10/25 14:46
+     * @Param [email] 邮箱
+     * @return com.qpp.system.domain.SysUser
+     * @throws
+     **/
     @Override
-    public SysUser selectUserByEmail(String email)
-    {
+    public SysUser selectUserByEmail(String email) {
         return userMapper.selectUserByEmail(email);
     }
 

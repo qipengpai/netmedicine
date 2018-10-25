@@ -44,6 +44,14 @@ public class CaptchaValidateFilter extends AccessControlFilter {
         return super.onPreHandle(request, response, mappedValue);
     }
 
+    /**
+     * @Author qipengpai
+     * @Description //TODO 是否允许通过
+     * @Date 2018/10/25 15:18
+     * @Param [request, response, mappedValue] 
+     * @return boolean
+     * @throws 
+     **/
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue)
             throws Exception {
@@ -52,9 +60,18 @@ public class CaptchaValidateFilter extends AccessControlFilter {
         if (captchaEnabled == false || !"post".equals(httpServletRequest.getMethod().toLowerCase())) {
             return true;
         }
+        //验证
         return validateResponse(httpServletRequest, httpServletRequest.getParameter(ShiroConstants.CURRENT_VALIDATECODE));
     }
 
+    /**
+     * @Author qipengpai
+     * @Description //TODO 校验验证码
+     * @Date 2018/10/25 15:39
+     * @Param [request, validateCode] 
+     * @return boolean
+     * @throws 
+     **/
     public boolean validateResponse(HttpServletRequest request, String validateCode) {
         Object obj = ShiroUtils.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
         String code = String.valueOf(obj != null ? obj : "");

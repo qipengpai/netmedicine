@@ -5,8 +5,7 @@ package com.qpp.apicommons.constant;
  * 
  * @author ruoyi
  */
-public interface ShiroConstants
-{
+public interface ShiroConstants {
     /**
      * 当前登录的用户
      */

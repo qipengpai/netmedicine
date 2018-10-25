@@ -101,6 +101,7 @@ public class UserRealm extends AuthorizingRealm {
 
         SysUser user = null;
         try {
+            //登陆
             user = loginService.login(username, password);
         }
         catch (CaptchaException e) {

@@ -82,8 +82,7 @@ public class BaseController {
     /**
      * 返回成功
      */
-    public AjaxResult success()
-    {
+    public AjaxResult success() {
         return AjaxResult.success();
     }
 
@@ -106,8 +105,7 @@ public class BaseController {
     /**
      * 返回失败消息
      */
-    public AjaxResult error(String message)
-    {
+    public AjaxResult error(String message) {
         return AjaxResult.error(message);
     }
 

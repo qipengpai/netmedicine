@@ -17,8 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Date 2018/10/25 11:41
  * @Version 1.0.1
  */
-public class SyncOnlineSessionFilter extends PathMatchingFilter
-{
+public class SyncOnlineSessionFilter extends PathMatchingFilter {
     @Autowired
     private OnlineSessionDAO onlineSessionDAO;
 

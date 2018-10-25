@@ -11,24 +11,23 @@ import org.apache.shiro.web.session.mgt.WebSessionContext;
 import org.springframework.stereotype.Component;
 import eu.bitwalker.useragentutils.UserAgent;
 
+
 /**
- * 自定义sessionFactory会话
- * 
- * @author ruoyi
+ * @ClassName UserRealm
+ * @Description TODO 自定义sessionFactory会话
+ * @Author qipengpai
+ * @Date 2018/10/25 11:41
+ * @Version 1.0.1
  */
 @Component
-public class OnlineSessionFactory implements SessionFactory
-{
+public class OnlineSessionFactory implements SessionFactory{
     @Override
-    public Session createSession(SessionContext initData)
-    {
+    public Session createSession(SessionContext initData){
         OnlineSession session = new OnlineSession();
-        if (initData != null && initData instanceof WebSessionContext)
-        {
+        if (initData != null && initData instanceof WebSessionContext) {
             WebSessionContext sessionContext = (WebSessionContext) initData;
             HttpServletRequest request = (HttpServletRequest) sessionContext.getServletRequest();
-            if (request != null)
-            {
+            if (request != null) {
                 UserAgent userAgent = UserAgent.parseUserAgentString(ServletUtils.getRequest().getHeader("User-Agent"));
                 // 获取客户端操作系统
                 String os = userAgent.getOperatingSystem().getName();

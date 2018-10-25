@@ -1,5 +1,6 @@
 
 $(function() {
+    //校验
     validateRule();
     $(".i-checks").iCheck({checkboxClass:"icheckbox_square-green-login"});
 	$('.imgcode').click(function() {
@@ -14,7 +15,9 @@ $.validator.setDefaults({
     }
 });
 
+//登录
 function login() {
+    //遮罩层
 	$.modal.loading($("#btnSubmit").data("loading"));
 	var username = $.common.trim($("input[name='username']").val());
     var password = $.common.trim($("input[name='password']").val());
@@ -33,6 +36,7 @@ function login() {
             if (r.code == 0) {
                 location.href = ctx + 'index';
             } else {
+                //遮罩层
             	$.modal.closeLoading();
             	$('.imgcode').click();
             	$.modal.msg(r.msg);
@@ -41,6 +45,7 @@ function login() {
     });
 }
 
+//校验规则
 function validateRule() {
     var icon = "<i class='fa fa-times-circle'></i> ";
     $("#signupForm").validate({

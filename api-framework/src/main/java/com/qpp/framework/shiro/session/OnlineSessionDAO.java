@@ -15,7 +15,7 @@ import com.qpp.system.service.impl.SysUserOnlineServiceImpl;
 
 
 /**
- * @ClassName ShiroConfig
+ * @ClassName OnlineSessionDAO
  * @Description TODO 针对自定义的ShiroSession的db操作
  * @Author qipengpai
  * @Date 2018/10/25 11:53
@@ -36,13 +36,11 @@ public class OnlineSessionDAO extends EnterpriseCacheSessionDAO {
     @Autowired
     private SysUserOnlineServiceImpl onlineService;
 
-    public OnlineSessionDAO()
-    {
+    public OnlineSessionDAO() {
         super();
     }
 
-    public OnlineSessionDAO(long expireTime)
-    {
+    public OnlineSessionDAO(long expireTime) {
         super();
     }
 
@@ -53,8 +51,7 @@ public class OnlineSessionDAO extends EnterpriseCacheSessionDAO {
      * @return ShiroSession
      */
     @Override
-    protected Session doReadSession(Serializable sessionId)
-    {
+    protected Session doReadSession(Serializable sessionId) {
         SysUserOnline userOnline = onlineService.selectOnlineById(String.valueOf(sessionId));
         if (userOnline == null)
         {

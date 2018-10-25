@@ -107,8 +107,7 @@ public class OnlineSession extends SimpleSession {
         this.status = status;
     }
 
-    public void markAttributeChanged()
-    {
+    public void markAttributeChanged() {
         this.attributeChanged = true;
     }
 

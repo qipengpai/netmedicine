@@ -17,19 +17,22 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import com.qpp.system.domain.SysUser;
 
+
 /**
- * 登录密码方法
- * 
- * @author ruoyi
+ * @ClassName PasswordService
+ * @Description TODO 登录密码方法
+ * @Author qipengpai
+ * @Date 2018/10/25 13:41
+ * @Version 1.0.1
  */
 @Component
-public class PasswordService
-{
+public class PasswordService {
     @Autowired
     private CacheManager cacheManager;
 
     private Cache<String, AtomicInteger> loginRecordCache;
 
+    //大于多少次锁定 5
     @Value(value = "${user.password.maxRetryCount}")
     private String maxRetryCount;
 
@@ -39,38 +42,61 @@ public class PasswordService
         loginRecordCache = cacheManager.getCache("loginRecordCache");
     }
 
+    /**
+     * @Author qipengpai
+     * @Description //TODO 验证密码
+     * @Date 2018/10/25 14:48
+     * @Param [user, password]
+     * @return void
+     * @throws
+     **/
     public void validate(SysUser user, String password) {
         String loginName = user.getLoginName();
-
+        //得到当前用户验证密码次数
         AtomicInteger retryCount = loginRecordCache.get(loginName);
-
-        if (retryCount == null)
-        {
+        //如果第一次验证为0
+        if (retryCount == null) {
             retryCount = new AtomicInteger(0);
             loginRecordCache.put(loginName, retryCount);
         }
-        if (retryCount.incrementAndGet() > Integer.valueOf(maxRetryCount).intValue())
-        {
+        //验证密码次数是否大约五次
+        if (retryCount.incrementAndGet() > Integer.valueOf(maxRetryCount).intValue()) {
             AsyncManager.me().execute(AsyncFactory.recordLogininfor(loginName, Constants.LOGIN_FAIL, MessageUtils.message("user.password.retry.limit.exceed", maxRetryCount)));
             throw new UserPasswordRetryLimitExceedException(Integer.valueOf(maxRetryCount).intValue());
         }
-
-        if (!matches(user, password))
-        {
+        //匹配密码
+        if (!matches(user, password)) {
             AsyncManager.me().execute(AsyncFactory.recordLogininfor(loginName, Constants.LOGIN_FAIL, MessageUtils.message("user.password.retry.limit.count", retryCount)));
+            //存储加一次
             loginRecordCache.put(loginName, retryCount);
             throw new UserPasswordNotMatchException();
         }
-        else
-        {
+        else {
+            //清空该用户错误密码次数
             clearLoginRecordCache(loginName);
         }
     }
 
+    /**
+     * @Author qipengpai
+     * @Description //TODO 匹配密码
+     * @Date 2018/10/25 14:54
+     * @Param [user, newPassword]
+     * @return boolean
+     * @throws
+     **/
     public boolean matches(SysUser user, String newPassword) {
         return user.getPassword().equals(encryptPassword(user.getLoginName(), newPassword, user.getSalt()));
     }
 
+    /**
+     * @Author qipengpai
+     * @Description //TODO 清空该用户错误密码次数
+     * @Date 2018/10/25 14:58
+     * @Param [username] 
+     * @return void
+     * @throws 
+     **/
     public void clearLoginRecordCache(String username) {
         loginRecordCache.remove(username);
     }

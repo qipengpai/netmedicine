@@ -6,13 +6,16 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 /**
- * Bean 工具类
- * 
- * @author ruoyi
+ * @ClassName BeanUtils
+ * @Description TODO  Bean 工具类
+ * @Author qipengpai
+ * @Date 2018/10/25 13:23
+ * @Version 1.0.1
  */
-public class BeanUtils
-{
+public class BeanUtils {
+
     /** Bean方法名中属性名开始的下标 */
     private static final int BEAN_METHOD_PROP_INDEX = 3;
 
@@ -28,26 +31,19 @@ public class BeanUtils
      * @param dest 目标对象
      * @param src 源对象
      */
-    public static void copyBeanProp(Object dest, Object src)
-    {
+    public static void copyBeanProp(Object dest, Object src) {
         List<Method> destSetters = getSetterMethods(dest);
         List<Method> srcGetters = getGetterMethods(src);
-        try
-        {
-            for (Method setter : destSetters)
-            {
-                for (Method getter : srcGetters)
-                {
+        try {
+            for (Method setter : destSetters) {
+                for (Method getter : srcGetters) {
                     if (isMethodPropEquals(setter.getName(), getter.getName())
-                            && setter.getParameterTypes()[0].equals(getter.getReturnType()))
-                    {
+                            && setter.getParameterTypes()[0].equals(getter.getReturnType())) {
                         setter.invoke(dest, getter.invoke(src));
                     }
                 }
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -58,8 +54,7 @@ public class BeanUtils
      * @param obj 对象
      * @return 对象的setter方法列表
      */
-    public static List<Method> getSetterMethods(Object obj)
-    {
+    public static List<Method> getSetterMethods(Object obj) {
         // setter方法列表
         List<Method> setterMethods = new ArrayList<Method>();
 
@@ -68,11 +63,9 @@ public class BeanUtils
 
         // 查找setter方法
 
-        for (Method method : methods)
-        {
+        for (Method method : methods) {
             Matcher m = SET_PATTERN.matcher(method.getName());
-            if (m.matches() && (method.getParameterTypes().length == 1))
-            {
+            if (m.matches() && (method.getParameterTypes().length == 1)) {
                 setterMethods.add(method);
             }
         }
@@ -87,18 +80,15 @@ public class BeanUtils
      * @return 对象的getter方法列表
      */
 
-    public static List<Method> getGetterMethods(Object obj)
-    {
+    public static List<Method> getGetterMethods(Object obj) {
         // getter方法列表
         List<Method> getterMethods = new ArrayList<Method>();
         // 获取所有方法
         Method[] methods = obj.getClass().getMethods();
         // 查找getter方法
-        for (Method method : methods)
-        {
+        for (Method method : methods) {
             Matcher m = GET_PATTERN.matcher(method.getName());
-            if (m.matches() && (method.getParameterTypes().length == 0))
-            {
+            if (m.matches() && (method.getParameterTypes().length == 0)) {
                 getterMethods.add(method);
             }
         }
@@ -115,8 +105,7 @@ public class BeanUtils
      * @return 属性名一样返回true，否则返回false
      */
 
-    public static boolean isMethodPropEquals(String m1, String m2)
-    {
+    public static boolean isMethodPropEquals(String m1, String m2) {
         return m1.substring(BEAN_METHOD_PROP_INDEX).equals(m2.substring(BEAN_METHOD_PROP_INDEX));
     }
 }
