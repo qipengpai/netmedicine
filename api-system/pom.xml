@@ -16,12 +16,14 @@
 	</description>
 	
     <dependencies>
-		<!-- 通用工具-->
+
+        <!-- 数据连接-->
         <dependency>
             <groupId>com.qpp</groupId>
-            <artifactId>api-commons</artifactId>
+            <artifactId>db-core</artifactId>
             <version>${api.version}</version>
         </dependency>
+
     </dependencies>
 	
 </project>

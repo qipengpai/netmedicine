@@ -1,10 +1,8 @@
-package com.qpp.framework.aspectj;
-
-import java.lang.reflect.Method;
+package com.qpp.dbcore.aspectj;
 
 import com.qpp.apicommons.annotation.DataSource;
 import com.qpp.apicommons.utils.StringUtils;
-import com.qpp.framework.datasource.DynamicDataSourceContextHolder;
+import com.qpp.dbcore.datasource.DynamicDataSourceContextHolder;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -15,23 +13,25 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Method;
+
+
 /**
- * 多数据源处理
- * 
- * @author ruoyi
+ * @author qipengpai
+ * @Title: DruidConfig
+ * @ProjectName netmedicine
+ * @Description: TODO druid 多数据源处理
+ * @date 10:30 2018/10/22
  */
 @Aspect
 @Order(1)
 @Component
-public class DataSourceAspect
-{
+public class DataSourceAspect {
+
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     @Pointcut("@annotation(com.qpp.apicommons.annotation.DataSource)")
-    public void dsPointCut()
-    {
-
-    }
+    public void dsPointCut() { }
 
     @Around("dsPointCut()")
     public Object around(ProceedingJoinPoint point) throws Throwable
@@ -42,17 +42,13 @@ public class DataSourceAspect
 
         DataSource dataSource = method.getAnnotation(DataSource.class);
 
-        if (StringUtils.isNotNull(dataSource))
-        {
+        if (StringUtils.isNotNull(dataSource)) {
             DynamicDataSourceContextHolder.setDateSoureType(dataSource.value().name());
         }
 
-        try
-        {
+        try {
             return point.proceed();
-        }
-        finally
-        {
+        } finally {
             // 销毁数据源 在执行方法之后
             DynamicDataSourceContextHolder.clearDateSoureType();
         }

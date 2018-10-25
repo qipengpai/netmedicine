@@ -1,15 +1,16 @@
-package com.qpp.framework.datasource;
+package com.qpp.dbcore.datasource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 数据源切换处理
- * 
- * @author ruoyi
+ * @author qipengpai
+ * @Title: DataSource
+ * @ProjectName netmedicine
+ * @Description: TODO 数据源切换处理
+ * @date 10:30 2018/10/22
  */
-public class DynamicDataSourceContextHolder
-{
+public class DynamicDataSourceContextHolder {
     public static final Logger log = LoggerFactory.getLogger(DynamicDataSourceContextHolder.class);
 
     /**
@@ -21,8 +22,7 @@ public class DynamicDataSourceContextHolder
     /**
      * 设置数据源的变量
      */
-    public static void setDateSoureType(String dsType)
-    {
+    public static void setDateSoureType(String dsType) {
         log.info("切换到{}数据源", dsType);
         CONTEXT_HOLDER.set(dsType);
     }
@@ -30,16 +30,14 @@ public class DynamicDataSourceContextHolder
     /**
      * 获得数据源的变量
      */
-    public static String getDateSoureType()
-    {
+    public static String getDateSoureType(){
         return CONTEXT_HOLDER.get();
     }
 
     /**
      * 清空数据源变量
      */
-    public static void clearDateSoureType()
-    {
+    public static void clearDateSoureType(){
         CONTEXT_HOLDER.remove();
     }
 }
