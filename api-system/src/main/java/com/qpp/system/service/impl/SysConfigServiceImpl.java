@@ -1,15 +1,15 @@
 package com.qpp.system.service.impl;
 
-import java.util.List;
-
 import com.qpp.apicommons.constant.UserConstants;
 import com.qpp.apicommons.support.Convert;
 import com.qpp.apicommons.utils.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.qpp.system.domain.SysConfig;
 import com.qpp.system.mapper.SysConfigMapper;
 import com.qpp.system.service.ISysConfigService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 参数配置 服务层实现

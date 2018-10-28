@@ -1,8 +1,8 @@
 package com.qpp.system.service;
 
-import java.util.List;
-
 import com.qpp.system.domain.SysPost;
+
+import java.util.List;
 
 /**
  * 岗位信息 服务层

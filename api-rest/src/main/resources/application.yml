@@ -1,0 +1,76 @@
+# 开发环境配置
+server:
+  # 服务端口
+  port: 8888
+  servlet:
+    # 项目contextPath
+    context-path: /
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # tomcat最大线程数，默认为200
+    max-threads: 800
+    # Tomcat启动初始化的线程数，默认值25
+    min-spare-threads: 30
+ 
+# 日志配置
+logging:
+  level:
+    com.ruoyi: debug
+    org.springframework: WARN
+    org.spring.springboot.dao: debug
+
+# Spring配置
+spring:
+  profiles:
+    active: druid
+
+  redis:
+  ################### redis 单机版 start ##########################
+      host: 127.0.0.1
+      port: 6379
+      timeout: 3000ms
+  # 文件上传
+  servlet:
+     multipart:
+       max-file-size:  30MB
+       max-request-size:  30MB
+  # 服务模块
+  devtools:
+    restart:
+      # 热部署开关
+      enabled: true
+mybatis:
+  config-location: classpath:mybatis.cfg.xml
+  mapper-locations: classpath*:com/qpp/**/dao/*.xml
+# MyBatis
+#mybatis:
+#    # 搜索指定包别名
+#    typeAliasesPackage: com.qpp
+#    # 配置mapper的扫描，找到所有的mapper.xml映射文件
+#    mapperLocations: classpath:mapper/system/*Mapper.xml,classpath:mapper/quartz/*Mapper.xml,classpath:mapper/generator/*Mapper.xml
+#    # 加载全局的配置文件
+#    configLocation: classpath:mapper/mybatis-config.xml
+
+# 防止XSS攻击
+xss: 
+  # 过滤开关
+  enabled: true
+  # 排除链接（多个用逗号分隔）
+  excludes: /system/notice/*
+  # 匹配链接
+  urlPatterns: /system/*,/monitor/*,/tool/*
+#aliyun:
+#  oss:
+#    access-key: 你的密钥
+#    accessKeySecret: 你的密钥
+#    endpoint: 你的端点
+#    bucketName: 你的名称
+#    domain: 你的说明
+
+qiniu:
+  oss:
+    access-key: xcdbuknatbqyH-FuuwxDMPAQe-M7msahfuBsoi7z
+    accessKeySecret: yvIpExagHdAe8WouRLtNJdPdBBRar-dR0O77bm7d
+    endpoint: http://pb0pz1b7c.bkt.clouddn.com/
+    bucketName: yaoyao

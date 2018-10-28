@@ -22,18 +22,29 @@
         <druid.version>1.1.10</druid.version>
         <bitwalker.version>1.19</bitwalker.version>
         <kaptcha.version>2.3.2</kaptcha.version>
+        <pagehelper.boot.version>1.2.5</pagehelper.boot.version>
         <swagger.version>2.7.0</swagger.version>
         <mysql.version>8.0.11</mysql.version>
     </properties>
 
     <modules>
+        <!--web管理程序-->
         <module>api-admin</module>
+        <!--web管理端配置 权限-->
         <module>api-framework</module>
+        <!--web管理端业务类-->
         <module>api-system</module>
+        <!--定时任务-->
         <module>api-quartz</module>
+        <!--代码生成-->
         <module>api-generator</module>
+        <!--公共组件-->
         <module>api-commons</module>
+        <!--数据连接-->
         <module>db-core</module>
+        <!--接口程序-->
+        <module>api-rest</module>
+        <module>file-system</module>
     </modules>
 
     <dependencyManagement>

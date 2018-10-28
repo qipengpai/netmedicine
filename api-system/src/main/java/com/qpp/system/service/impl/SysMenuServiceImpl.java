@@ -1,27 +1,18 @@
 package com.qpp.system.service.impl;
 
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.qpp.apicommons.constant.UserConstants;
 import com.qpp.apicommons.utils.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.qpp.system.domain.SysMenu;
 import com.qpp.system.domain.SysRole;
 import com.qpp.system.domain.SysUser;
 import com.qpp.system.mapper.SysMenuMapper;
 import com.qpp.system.mapper.SysRoleMenuMapper;
 import com.qpp.system.service.ISysMenuService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.text.MessageFormat;
+import java.util.*;
 
 
 /**

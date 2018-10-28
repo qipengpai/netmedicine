@@ -1,9 +1,9 @@
 package com.qpp.system.service;
 
+import com.qpp.system.domain.SysRole;
+
 import java.util.List;
 import java.util.Set;
-
-import com.qpp.system.domain.SysRole;
 
 
 /**

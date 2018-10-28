@@ -1,14 +1,14 @@
 package com.qpp.system.service.impl;
 
-import java.util.Date;
-import java.util.List;
-
 import com.qpp.apicommons.utils.DateUtils;
 import com.qpp.apicommons.utils.StringUtils;
+import com.qpp.system.domain.SysUserOnline;
 import com.qpp.system.mapper.SysUserOnlineMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import com.qpp.system.domain.SysUserOnline;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * @ClassName ShiroConfig

@@ -1,31 +1,24 @@
 package com.qpp.system.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.qpp.apicommons.annotation.DataScope;
 import com.qpp.apicommons.constant.UserConstants;
 import com.qpp.apicommons.support.Convert;
 import com.qpp.apicommons.utils.StringUtils;
+import com.qpp.system.domain.*;
+import com.qpp.system.mapper.*;
+import com.qpp.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.qpp.system.domain.SysPost;
-import com.qpp.system.domain.SysRole;
-import com.qpp.system.domain.SysUser;
-import com.qpp.system.domain.SysUserPost;
-import com.qpp.system.domain.SysUserRole;
-import com.qpp.system.mapper.SysPostMapper;
-import com.qpp.system.mapper.SysRoleMapper;
-import com.qpp.system.mapper.SysUserMapper;
-import com.qpp.system.mapper.SysUserPostMapper;
-import com.qpp.system.mapper.SysUserRoleMapper;
-import com.qpp.system.service.ISysUserService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * 
  * @author ruoyi
  */
+
 /**
  * @ClassName SysUserServiceImpl
  * @Description TODO 用户 业务层处理

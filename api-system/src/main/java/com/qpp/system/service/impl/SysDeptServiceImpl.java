@@ -1,19 +1,19 @@
 package com.qpp.system.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.qpp.apicommons.annotation.DataScope;
 import com.qpp.apicommons.constant.UserConstants;
 import com.qpp.apicommons.utils.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.qpp.system.domain.SysDept;
 import com.qpp.system.domain.SysRole;
 import com.qpp.system.mapper.SysDeptMapper;
 import com.qpp.system.service.ISysDeptService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 部门管理 服务实现

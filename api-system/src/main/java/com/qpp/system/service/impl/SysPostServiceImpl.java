@@ -1,16 +1,16 @@
 package com.qpp.system.service.impl;
 
-import java.util.List;
-
 import com.qpp.apicommons.constant.UserConstants;
 import com.qpp.apicommons.support.Convert;
 import com.qpp.apicommons.utils.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.qpp.system.domain.SysPost;
 import com.qpp.system.mapper.SysPostMapper;
 import com.qpp.system.mapper.SysUserPostMapper;
 import com.qpp.system.service.ISysPostService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 岗位信息 服务层处理

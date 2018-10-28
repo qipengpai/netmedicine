@@ -1,9 +1,9 @@
 package com.qpp.system.service;
 
+import com.qpp.system.domain.SysUserOnline;
+
 import java.util.Date;
 import java.util.List;
-
-import com.qpp.system.domain.SysUserOnline;
 
 /**
  * 在线用户 服务层

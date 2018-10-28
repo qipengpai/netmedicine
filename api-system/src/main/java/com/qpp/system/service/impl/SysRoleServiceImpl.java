@@ -1,17 +1,9 @@
 package com.qpp.system.service.impl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import com.qpp.apicommons.annotation.DataScope;
 import com.qpp.apicommons.constant.UserConstants;
 import com.qpp.apicommons.support.Convert;
 import com.qpp.apicommons.utils.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.qpp.system.domain.SysRole;
 import com.qpp.system.domain.SysRoleDept;
 import com.qpp.system.domain.SysRoleMenu;
@@ -20,6 +12,10 @@ import com.qpp.system.mapper.SysRoleMapper;
 import com.qpp.system.mapper.SysRoleMenuMapper;
 import com.qpp.system.mapper.SysUserRoleMapper;
 import com.qpp.system.service.ISysRoleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.*;
 
 
 /**

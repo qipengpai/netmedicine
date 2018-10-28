@@ -1,12 +1,12 @@
 package com.qpp.system.service;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.qpp.system.domain.SysMenu;
 import com.qpp.system.domain.SysRole;
 import com.qpp.system.domain.SysUser;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 菜单 业务层
